@@ -58,7 +58,7 @@ if __name__ == "__main__":
     # ds = Dataset.from_pandas(df)
     
     # 加载完整数据集，但控制内存使用
-    df = pd.read_json('huanhuan.json')
+    df = pd.read_json('huanhuan_1.json')
     ds = Dataset.from_pandas(df)
     
     # 为了控制内存使用，我们可以对数据集进行懒加载处理
