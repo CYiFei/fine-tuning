@@ -20,7 +20,7 @@ def predict(messages, model, tokenizer):
     generated_ids = model.generate(
         model_inputs.input_ids, 
         attention_mask=attention_mask,  # 显式传递attention_mask
-        max_new_tokens=16,  # 进一步减少生成token数
+        max_new_tokens=8,  # 进一步减少生成token数
         temperature=0.7,
         do_sample=True,
         pad_token_id=tokenizer.eos_token_id,
@@ -31,7 +31,7 @@ def predict(messages, model, tokenizer):
         num_beams=1,  # 使用贪心解码而不是beam search
         repetition_penalty=1.1,  # 控制重复
         # 添加长度惩罚以避免生成过长序列
-        max_length=min(model_inputs.input_ids.shape[1] + 16, 512),  # 限制总长度
+        # max_length=min(model_inputs.input_ids.shape[1] + 16, 256),  # 限制总长度
         # 减少beam数量和batch大小
         num_return_sequences=1,
     )
@@ -93,7 +93,7 @@ def main():
     model.eval()  # 设置为评估模式
     
     # 读取测试数据集 - 限制数量进一步节省显存
-    test_df = pd.read_json("new_test.jsonl", lines=True)[:3]  # 减少到前3条做主观评测
+    test_df = pd.read_json("new_test.jsonl", lines=True)[:10]  # 减少到前3条做主观评测
 
     # SwanLab记录
     if swanlab_available:
