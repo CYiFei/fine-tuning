@@ -42,7 +42,6 @@ def load_model_with_adapter(base_model_path, adapter_path, quantization=False):
     
     return model, tokenizer
 
-
 def predict_ner(text, model, tokenizer):
     """
     对输入文本进行NER预测

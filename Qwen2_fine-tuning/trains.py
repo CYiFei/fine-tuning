@@ -142,7 +142,7 @@ def main():
     per_device_batch_size = 4
     if n_gpu > 1:
         # 在多GPU情况下可以增加每GPU的批处理大小
-        per_device_batch_size = 8  # 每个GPU处理8个样本
+        per_device_batch_size = 4  # 每个GPU处理8个样本
         gradient_accumulation_steps = 2  # 减少梯度累积步数以保持总有效批大小
     else:
         gradient_accumulation_steps = 4

@@ -1,0 +1,1 @@
+python predict.py --base_model_path ./models/qwen/Qwen2-1___5B-Instruct --adapter_path ./output --input_text "今天 天气"
