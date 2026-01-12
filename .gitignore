@@ -213,3 +213,7 @@ Qwen2_fine-tuning/.mv
 Qwen2_fine-tuning/output/
 Qwen2_fine-tuning_recognize/models
 Qwen2_fine-tuning_recognize/output
+ChatGLM-6B/.lock
+ChatGLM-6B/ZhipuAI
+ChatGLM-6B/._____temp
+ChatGLM-6B/AdvertiseGen.tar.gz
