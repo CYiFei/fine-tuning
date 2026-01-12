@@ -149,8 +149,18 @@ def main():
         model = AutoModel.from_pretrained(model_args.model_name_or_path, config=config, trust_remote_code=True)
 
     if model_args.quantization_bit is not None:
-        print(f"Quantized to {model_args.quantization_bit} bit")
-        model = model.quantize(model_args.quantization_bit)
+        print(f"Attempting to quantize to {model_args.quantization_bit} bit")
+        try:
+            model = model.quantize(model_args.quantization_bit)
+            print(f"Successfully quantized to {model_args.quantization_bit} bit")
+        except RuntimeError as e:
+            if "no kernel image is available for execution on the device" in str(e):
+                print("CUDA quantization failed due to incompatible GPU compute capability.")
+                print("Falling back to CPU-based processing without quantization.")
+                print(f"Original model dtype: {model.dtype}")
+                model = model.float()
+            else:
+                raise e
 
     if model_args.pre_seq_len is not None:
         # P-tuning v2
